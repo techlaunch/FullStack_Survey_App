@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Questions</title>
+	<!-- Bootstrap -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+	<!-- Material Design Bootstrap -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.7/css/mdb.min.css" rel="stylesheet">
+
+	<style type="text/css">
+		.container {
+			background-color: white;
+			border-radius: 10px;
+			margin-top: 20px;
+			margin-bottom: 20px;
+			padding-bottom: 20px;
+		}
+
+		.padding {
+			padding-top: 20px;
+			padding-bottom: 20px;
+		}
+
+		.icon {
+			font-size: 3em;
+			color: Tomato;
+			margin-right: 10px;
+		}
+
+		#error {
+			display: none;
+		}
+
+		body {
+			padding-top: 50px;
+			background-color: lightblue;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div id="error" class="col-12 padding">
+				<div class="alert alert-danger" role="alert">
+					Please fill all the hearts
+				</div>
+			</div>
+			<div class="col-12 text-center padding">
+				<h1>Questions</h1>
+			</div>
+			<div class="col-12 col-md-6 padding">
+				<h4>How satisfied were you with the attendant?</h4>
+				<i onclick="fill(this,'q1',1)" class="far fa-heart icon q1"></i>
+				<i onclick="fill(this,'q1',2)" class="far fa-heart icon q1"></i>
+				<i onclick="fill(this,'q1',3)" class="far fa-heart icon q1"></i>
+				<i onclick="fill(this,'q1',4)" class="far fa-heart icon q1"></i>
+				<i onclick="fill(this,'q1',5)" class="far fa-heart icon q1"></i>
+			</div>
+			<div class="col-12 col-md-6 padding">
+				<h4>How satisfied were you with the timeliness of your service?</h4>
+				<i onclick="fill(this,'q2',1)" class="far fa-heart icon q2"></i>
+				<i onclick="fill(this,'q2',2)" class="far fa-heart icon q2"></i>
+				<i onclick="fill(this,'q2',3)" class="far fa-heart icon q2"></i>
+				<i onclick="fill(this,'q2',4)" class="far fa-heart icon q2"></i>
+				<i onclick="fill(this,'q2',5)" class="far fa-heart icon q2"></i>
+			</div>
+			<div class="col-12 col-md-6 padding">
+				<h4>How satisfied were you with the results?</h4>
+				<i onclick="fill(this,'q3',1)" class="far fa-heart icon q3"></i>
+				<i onclick="fill(this,'q3',2)" class="far fa-heart icon q3"></i>
+				<i onclick="fill(this,'q3',3)" class="far fa-heart icon q3"></i>
+				<i onclick="fill(this,'q3',4)" class="far fa-heart icon q3"></i>
+				<i onclick="fill(this,'q3',5)" class="far fa-heart icon q3"></i>
+			</div>
+		</div>
+
+		<div class="text-center">
+			<button onclick="send()" class="btn btn-outline-dark">Continue</button>
+		</div>
+	</div>
+
+	<!-- JQuery -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		// object of responses
+		var hearts = {'q1':0, 'q2':0, 'q3':0};
+
+		// fill a heart
+		function fill(obj, question, value) {
+			// fill a heart
+			$('.' + question).removeClass('fas').addClass('far');
+			$(obj).removeClass('far').addClass('fas');
+
+			// save the value on the object
+			hearts[question] = value;
+		}
+
+		// submit the data
+		function send() {
+			// validate everything fill
+			if(hearts.q1 > 0 && hearts.q2 > 0 && hearts.q3 > 0) {
+				// send data
+				document.location.href = 'TODO_ADD_PAGE?q1='+hearts.q1+'&q2='+hearts.q2+'&q3='+hearts.q3;
+			}else{
+				// display error
+				$('#error').show();
+			}
+		}
+	</script>
+</body>
+</html>
